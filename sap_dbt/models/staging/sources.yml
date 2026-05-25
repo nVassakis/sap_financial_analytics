@@ -4,8 +4,8 @@ sources:
   - name: raw
     schema: raw
     tables:
-      - name: financial_transactions
-      - name: customer_type_texts
-      - name: product_category_texts
-      - name: gl_account_type_texts
+      - name: financialtransactions
+      - name: customertypetexts
+      - name: productcategorytexts
+      - name: glaccounttypetexts
       - name: products

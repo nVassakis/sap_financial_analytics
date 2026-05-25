@@ -23,6 +23,9 @@ for csv_path in sorted(raw_dir.glob("*.csv")):
     # Replace with real nulls
     df = df.replace("#", None)
 
+    # Lowercase column names
+    df.columns = df.columns.str.lower()
+
     # Write to PostgreSQL
     df.to_sql(table_name, engine, schema="raw", if_exists="replace", index=False)
 
