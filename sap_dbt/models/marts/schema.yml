@@ -50,3 +50,39 @@ models:
         tests:
           - accepted_values:
               values: ['INC', 'EXP']
+
+  - name: rpt_budget_vs_actual
+    description: How does actual revenue and profit compare to budget, by year
+    columns:
+      - name: year
+        tests:
+          - not_null
+      - name: version
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Actual', 'Budget']
+
+  - name: rpt_revenue_by_category
+    description: Revenue, cost and profit by product category (Actual only)
+    columns:
+      - name: product_category_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: product_category_name
+        tests:
+          - not_null
+
+  - name: rpt_revenue_by_segment
+    description: Revenue, cost and profit by customer segment (Actual only)
+    columns:
+      - name: customer_type_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: customer_type_name
+        tests:
+          - not_null
