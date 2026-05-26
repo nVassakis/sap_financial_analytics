@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: dim_customer_type
+    description: Customer segment lookup table (Large, Speciality, Medium)
+    columns:
+      - name: customer_type_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: customer_type_name
+        tests:
+          - not_null
+
+  - name: dim_product_category
+    description: Product category lookup table
+    columns:
+      - name: product_category_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: product_category_name
+        tests:
+          - not_null
+
+  - name: dim_date
+    description: Calendar dimension (monthly)
+    columns:
+      - name: date_id
+        description: Primary key, first day of each month
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_transactions
+    description: One row per financial transaction
+    columns:
+      - name: transaction_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: version
+        tests:
+          - accepted_values:
+              values: ['Actual', 'Budget']
+      - name: account_type_id
+        tests:
+          - accepted_values:
+              values: ['INC', 'EXP']
