@@ -1,10 +1,15 @@
+import os
 import re
 from pathlib import Path
 
 import pandas as pd
+from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 
-engine = create_engine("postgresql+psycopg2://nikos@localhost:5432/sap_financials")
+load_dotenv()
+
+db_url = os.environ["DATABASE_URL"]
+engine = create_engine(db_url)
 
 with engine.begin() as conn:
     conn.execute(text("CREATE SCHEMA IF NOT EXISTS raw"))
